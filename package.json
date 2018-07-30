@@ -14,7 +14,7 @@
     "gulp-connect": "^5.2.0",
     "gulp-pug": "^3.3.0",
     "gulp-requirejs": "^1.1.1",
-    "gulp-sass": "^3.1.0",
+    "gulp-stylus": "*",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify": "^3.0.0"
   }

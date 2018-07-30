@@ -1,6 +1,6 @@
 let gulp = require('gulp')
   , pug = require('gulp-pug')
-  , sass = require('gulp-sass')
+  , stylus = require('gulp-stylus')
   , sourcemaps = require('gulp-sourcemaps')
   , connect = require('gulp-connect')
   ;
@@ -21,10 +21,12 @@ gulp.task('pug', () => {
   .pipe(connect.reload());
 });
 
-gulp.task('sass', () => {
-  gulp.src('app/sass/**/*.sass')
+gulp.task('stylus', () => {
+  gulp.src('app/styl/**/*.styl')
   .pipe(sourcemaps.init()) 
-  .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError)) 
+  .pipe(stylus({
+    compress: true // config for stylus
+  }))
   .pipe(sourcemaps.write('./maps')) // folder for *.map files
   .pipe(gulp.dest('dist/css'))
   .pipe(connect.reload());
@@ -34,7 +36,7 @@ gulp.task('sass', () => {
 
 gulp.task('watch', () => {
   gulp.watch('app/**/*.pug', ['pug']);
-  gulp.watch('app/sass/**/*.sass', ['sass'])
+  gulp.watch('app/styl/**/*.styl', ['stylus'])
 });
 
-gulp.task('default', ['pug', 'connect', 'sass', 'watch']);
+gulp.task('default', ['pug', 'connect', 'stylus', 'watch']);
